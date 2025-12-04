@@ -7,6 +7,8 @@ const urlsToCache = [
   '/static/js/bundle.js',
   '/static/js/main.chunk.js',
   '/static/js/0.chunk.js',
+  '/static/js/main.7b6be669.js',
+  '/static/css/main.556b3456.css',
   '/favicon.ico',
   '/logo192.png',
   '/logo512.png',
