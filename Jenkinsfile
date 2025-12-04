@@ -15,31 +15,43 @@ pipeline {
 
         stage('Install Node') {
             steps {
-                // Instala Node 18
-                sh 'curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -'
-                sh 'sudo apt-get install -y nodejs'
+                bat '''
+                    echo Instalando Node 18...
+                    curl -o node.msi https://nodejs.org/dist/v18.19.0/node-v18.19.0-x64.msi
+                    msiexec /i node.msi /quiet /norestart
+                '''
+            }
+        }
+
+        stage('Verify Node') {
+            steps {
+                bat '''
+                    node -v
+                    npm -v
+                '''
             }
         }
 
         stage('Install dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Build PWA') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
 
         stage('Deploy to Vercel') {
             steps {
-                sh '''
+                bat '''
                     npm install -g vercel
-                    vercel deploy --prod --token $VERCEL_TOKEN --yes
+                    vercel deploy --prod --token %VERCEL_TOKEN% --yes
                 '''
             }
         }
     }
 }
+
