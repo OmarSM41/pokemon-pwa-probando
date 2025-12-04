@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'master',
-                    url: 'https://github.com/OmarSM41/pokemon-pwa-probando.git'
+                    url: 'https://github.com/OmarSM41/pokemon-pwa.git'
             }
         }
 
