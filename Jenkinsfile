@@ -19,10 +19,8 @@ pipeline {
 
         stage('Verify Node') {
             steps {
-                bat '''
-                    node -v
-                    npm -v
-                '''
+                bat 'node -v'
+                bat 'npm -v'
             }
         }
 
@@ -40,12 +38,11 @@ pipeline {
 
         stage('Deploy to Vercel') {
             steps {
-                bat '''
-                    npm install -g vercel
-                    vercel deploy --prod --token %VERCEL_TOKEN% --yes
-                '''
+                bat 'npm install -g vercel'
+                bat 'vercel deploy --prod --token %VERCEL_TOKEN% --yes'
             }
         }
     }
 }
+
 
